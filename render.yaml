@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: cumulocity-mcp-server
+    runtime: python
+    buildCommand: pip install mcp-server-c8y
+    startCommand: python -m mcp_server_c8y --transport streamable-http --port $PORT --host 0.0.0.0
+    envVars:
+      - key: C8Y_BASEURL
+        sync: false
+      - key: C8Y_TENANT
+        sync: false
+      - key: C8Y_USER
+        sync: false
+      - key: C8Y_PASSWORD
+        sync: false
+    healthCheckPath: /health
